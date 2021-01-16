@@ -1,0 +1,17 @@
+from selenium import webdriver
+
+driver =webdriver.Firefox(executable_path=r'Your\path\to\geckodriver.exe')
+driver.get('https://web.whatsapp.com/')
+print('Login...../n')
+name =input('Reciever: ')
+msg = input('Message: ')
+count =input('Repeat: ')
+user = driver.find_element_by_xpath('//span[@title = "{}"]'.format(name))
+user.click()
+
+msgBox = driver.find_element_by_xpath('//*[@id="main"]/footer/div[1]/div[2]/div/div[2]')
+for i in range(int(count)):
+    msgBox.send_keys(msg)
+    sendButton = driver.find_element_by_xpath('//*[@id="main"]/footer/div[1]/div[3]/button')
+    sendButton.click()
+
